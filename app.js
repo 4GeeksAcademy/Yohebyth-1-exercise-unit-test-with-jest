@@ -13,16 +13,9 @@ let oneEuroIs = {
     "GBP": 0.87, // british pound
 }
 
-const fromDollarToEuro = (dollarToEuro) =>{
-    return dollarToEuro/oneEuroIs.USD;
-}
-
-const fromYenToEuro = (yenToEuro) =>{
-    return yenToEuro/oneEuroIs.JPY;
-}
-
 const fromDollarToYen = (dollarToYen) =>{
-    return fromDollarToEuro(dollarToYen)*oneEuroIs.JPY;
+    const dollarToEuro = dollarToYen/oneEuroIs.USD;
+    return dollarToEuro*oneEuroIs.JPY;
 }
 
 const fromEuroToDollar = (euroToDollar) =>{
@@ -30,11 +23,12 @@ const fromEuroToDollar = (euroToDollar) =>{
 }
 
 const fromYenToPound = (yenToPound) =>{
-    return fromYenToEuro(yenToPound)*oneEuroIs.GBP;
+    const yenToEuro = yenToPound/oneEuroIs.JPY;
+    return yenToEuro*oneEuroIs.GBP;
 }
 
 // Exporta la función para usarla en otros archivos 
 // (similar a la palabra clave "export" cuando se usa webpack)
-module.exports = { sum, fromDollarToEuro, fromYenToEuro, fromDollarToYen, fromEuroToDollar, fromYenToPound };
+module.exports = { sum, fromDollarToYen, fromEuroToDollar, fromYenToPound };
 
 
